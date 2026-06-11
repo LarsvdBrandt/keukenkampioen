@@ -1,23 +1,32 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keuken Kampioen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/tailwindcss-cdn@3.4.3/tailwindcss.js"></script>
+  <style>
+    *{font-family:'Poppins',sans-serif;box-sizing:border-box;}
+    body{margin:0;background:#0a0a14;}
+    .star-half{display:inline-block;width:1em;height:1em;vertical-align:-0.15em;position:relative;}
+    .star-half svg{width:1em;height:1em;}
+    .cont-card{transition:transform 0.15s,box-shadow 0.15s;}
+    .cont-card:hover{transform:translateY(-2px);}
+    .country-row{transition:background 0.1s;}
+    .back-btn{transition:opacity 0.15s;}
+    .back-btn:hover{opacity:0.7;}
+    .ing-chip{line-height:1.35;}
+    @media(max-width:480px){
+      .recipe-ing-grid{grid-template-columns:1fr!important;}
+      .toc-grid{grid-template-columns:1fr!important;}
+      .cover-inner{padding:36px 20px 32px!important;}
+    }
+  </style>
+</head>
+<body>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/tailwindcss-cdn@3.4.3/tailwindcss.js"></script>
-<style>
-  *{font-family:'Poppins',sans-serif;box-sizing:border-box;}
-  .star-half{display:inline-block;width:1em;height:1em;vertical-align:-0.15em;position:relative;}
-  .star-half svg{width:1em;height:1em;}
-  .cont-card{transition:transform 0.15s,box-shadow 0.15s;}
-  .cont-card:hover{transform:translateY(-2px);}
-  .country-row{transition:background 0.1s;}
-  .back-btn{transition:opacity 0.15s;}
-  .back-btn:hover{opacity:0.7;}
-  .ing-chip{line-height:1.35;}
-  @media(max-width:480px){
-    .recipe-ing-grid{grid-template-columns:1fr!important;}
-    .toc-grid{grid-template-columns:1fr!important;}
-  }
-</style>
-
-<div id="app" style="max-width:720px;margin:0 auto;padding:0 0 40px;"></div>
+<div id="app" style="max-width:720px;margin:0 auto;padding:0 16px 40px;"></div>
 
 <script>
 const D={continents:[
@@ -89,7 +98,7 @@ function scoreBadgeStyle(s){
 
 function renderCover(){
   const allCountries=D.continents.reduce((a,c)=>a+c.countries.length,0);
-  return`<div style="background:#0f0f1a;border-radius:16px;padding:56px 32px 48px;text-align:center;margin-bottom:0;position:relative;overflow:hidden;">
+  return`<div class="cover-inner" style="background:#0f0f1a;border-radius:16px;padding:56px 32px 48px;text-align:center;margin-bottom:0;position:relative;overflow:hidden;">
   <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;" viewBox="0 0 720 340" preserveAspectRatio="xMidYMid slice">
     ${[...Array(70)].map((_,i)=>{const x=(Math.sin(i*1.9+1)*360+360).toFixed(0);const y=(Math.cos(i*1.3+0.5)*160+170).toFixed(0);const r=i%7===0?1.8:i%3===0?1.2:0.7;const op=(0.15+Math.abs(Math.sin(i*0.8))*0.4).toFixed(2);return`<circle cx="${x}" cy="${y}" r="${r}" fill="#e2e8f0" opacity="${op}"/>`}).join('')}
   </svg>
@@ -229,3 +238,5 @@ function showRecipe(cid,n){document.getElementById('app').innerHTML=renderRecipe
 function scrollToTop(){try{window.scrollTo({top:0,behavior:'smooth'});}catch(e){}}
 showHome();
 </script>
+</body>
+</html>
