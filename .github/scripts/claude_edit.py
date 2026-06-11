@@ -1,8 +1,11 @@
-import anthropic
 import os
 import sys
+from openai import OpenAI
 
-client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+client = OpenAI(
+    base_url="https://models.inference.ai.azure.com",
+    api_key=os.environ["GITHUB_TOKEN"],
+)
 
 with open("index.html", "r") as f:
     current_html = f.read()
@@ -20,30 +23,22 @@ if not prompt:
 
 print(f"Prompt: {prompt[:100]}...")
 
-message = client.messages.create(
-    model="claude-sonnet-4-6",
+response = client.chat.completions.create(
+    model="gpt-4o",
     max_tokens=16000,
     messages=[
         {
+            "role": "system",
+            "content": "Je bent een web developer die de single-page HTML app 'Keuken Kampioen' onderhoudt. Geef altijd ALLEEN de volledige bijgewerkte index.html terug — geen uitleg, geen markdown code blocks, alleen pure HTML."
+        },
+        {
             "role": "user",
-            "content": f"""Je bent een web developer die de single-page HTML app "Keuken Kampioen" onderhoudt.
-
-Hier is de huidige index.html:
-
-<current_html>
-{current_html}
-</current_html>
-
-Pas de volgende aanpassing toe:
-
-{prompt}
-
-Geef ALLEEN de volledige bijgewerkte index.html terug. Geen uitleg, geen markdown code blocks, geen andere tekst — alleen de pure HTML."""
+            "content": f"Huidige index.html:\n\n{current_html}\n\nAanpassing: {prompt}"
         }
     ]
 )
 
-new_html = message.content[0].text.strip()
+new_html = response.choices[0].message.content.strip()
 
 # Strip markdown code fences if present
 if new_html.startswith("```html"):
@@ -55,7 +50,7 @@ if new_html.endswith("```"):
 new_html = new_html.strip()
 
 if not new_html.startswith("<!DOCTYPE") and not new_html.startswith("<"):
-    print("Onverwachte response van Claude, stoppen.")
+    print("Onverwachte response, stoppen.")
     print(new_html[:200])
     sys.exit(1)
 
