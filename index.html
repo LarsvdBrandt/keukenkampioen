@@ -25,6 +25,7 @@
     .back-btn{transition:opacity 0.15s;}
     .back-btn:hover{opacity:0.7;}
     .ing-chip{line-height:1.35;}
+    .search-input::placeholder{color:#4a5568;}
     @media(max-width:480px){
       .recipe-ing-grid{grid-template-columns:1fr!important;}
       .toc-grid{grid-template-columns:1fr!important;}
@@ -48,7 +49,54 @@ spotify:'7e89621JPkKaeDSTQ3avtg',spotifyLabel:'Sweet Home Alabama — Lynyrd Sky
 ingredients:[{g:"Smashburgers"},["300 g rundergehakt (min. 20% vet)","2 brioche hamburgerbroodjes"],["2 plakken cheddarkaas","Zout en versgemalen peper"],[" Boter of olie voor de pan",""],{g:"Toppings"},["Sla, tomaat, augurk","Ketchup, mosterd, mayonaise"],{g:"Friet"},["400 g vastkokende aardappelen","Olie om te frituren"],["Zout","Paprikapoeder"]],
 steps:["Friet: schil en snijd aardappelen in staven. Blancheer 5 min, dep droog.","Frituur op 160°C (±8 min), laat afkoelen. Frituur nogmaals op 180°C tot goudbruin en knapperig.","Vorm gehaktballen van ±150 g. Verhit een gietijzeren pan op hoog vuur.","Leg een bal in de pan, druk direct hard plat met een spatel — de 'smash'.","Bak 2-3 min, flip, leg kaas erop, bak 1 min. Rooster de broodjes met boter.","Bouw de burger op en serveer met friet."]}
 ]},
-// [The rest of the continents, countries, and their data remain unchanged for brevity]
+{id:'zuid-amerika',name:'Zuid-Amerika',emoji:'🌎',color:'#059669',bg:'#04180f',light:'#a7f3d0',dim:'#065f46',countries:[
+{flag:'🇦🇷',name:'Argentinië',score:5.5,dish:'Kipfilet met Chimichurri, Friet & Salade',about:"Argentinië bij nacht — tango, wijn en de geur van vlees op de grill. De chimichurri is het groene goud van dit land: een kruidensaus die elk stuk vlees naar een hoger niveau tilt. Buenos Aires is een van de culinaire hoofdsteden van Zuid-Amerika.",persons:2,
+spotify:'5k0hvqbYiey0PNQqIA1OOZ',spotifyLabel:'Por Una Cabeza — Carlos Gardel',
+ingredients:[{g:"Kipfilet"},["2 kipfilets","Olijfolie, zout, peper, knoflookpoeder"],{g:"Chimichurri"},["½ bos verse peterselie, fijngehakt","2 teentjes knoflook, fijngehakt"],["½ tl oregano","½ tl chilivlokken"],["1,5 el rode wijnazijn","3 el olijfolie, zout en peper"],{g:"Salade & Friet"},["Gemengde sla, komkommer, tomaat","Dressing naar keuze"],["400 g aardappelen","Olie om te frituren"]],
+steps:["Chimichurri: meng alle ingrediënten en laat minimaal 30 minuten trekken.","Marineer de kipfilets in olijfolie, zout, peper en knoflookpoeder.","Grill of bak de kip op hoog vuur, ±6-7 minuten per kant, tot gaar en mooi gekleurd.","Maak de friet en de salade (zie VS-recept voor friet).","Serveer de kip met een royale schep chimichurri, friet en salade ernaast."]},
+{flag:'🇨🇱',name:'Chili',score:8.3,dish:'Steak op de Barbecue',about:"Chili loopt van de Atacama-woestijn tot de ijsvelden van Patagonië. De asado — de bbq-cultuur — is een heilige traditie. Goed vlees, vuur en geduld: meer heb je niet nodig.",persons:2,
+spotify:'5U7MyRNbuZrWkyAI4bm3Ja',spotifyLabel:'Gracias a la Vida — Violeta Parra',
+ingredients:[{g:"Steak"},["2 ribeye of entrecôte steaks (±250 g p.p.)","Grof zeezout"],["Versgemalen zwarte peper","Olijfolie"],["Rozemarijn of tijm (optioneel)","Knoflook (optioneel)"]],
+steps:["Haal het vlees 30 minuten van tevoren uit de koelkast.","Bereid de barbecue voor op hoge directe hitte.","Bestrooi royaal met grof zout en peper, bestrijk licht met olijfolie.","Grill 3-4 minuten per kant voor medium-rare (kerntemp ±55°C).","Laat 5 minuten rusten onder aluminiumfolie. Serveer met salade of gegrilde groenten."]}
+]},
+{id:'afrika',name:'Afrika',emoji:'🌍',color:'#dc2626',bg:'#1a0606',light:'#fca5a5',dim:'#991b1b',countries:[
+{flag:'🇹🇳',name:'Tunesië',score:6.3,dish:'Shakshuka met Naanbrood',about:"Tunesië ligt aan de Middellandse Zee en ademt een mix van Arabische, Berberse en Franse invloeden. De keuken is pittig, aromatisch en vol harissa. Shakshuka — eieren gepocheerd in tomatensaus — is wereldwijd geliefd geraakt.",persons:2,
+spotify:'6sNVx9BBrsA2IzwYSDfLOM',spotifyLabel:'Sidi Mansour — Saber Rebai',
+ingredients:[{g:"Shakshuka"},["4 eieren","1 blik gepelde tomaten (400 g)"],["1 rode paprika, gesneden","1 ui, gesnipperd"],["2 teentjes knoflook","1-2 tl harissa"],["1 tl komijn","1 tl paprikapoeder"],["Verse koriander","Olijfolie, zout, peper"],{g:"Naanbrood"},["200 g bloem","½ tl droge gist"],["100 ml lauwwarm water","60 g yoghurt"],["½ tl zout","1 el olijfolie"]],
+steps:["Naan: meng gist, suiker en water, laat 5 min staan. Voeg bloem, zout, yoghurt en olie toe, kneed soepel.","Laat 1 uur rijzen. Verdeel in bolletjes, rol uit en bak in hete droge pan tot luchtbellen ontstaan. Flip.","Fruit ui en knoflook in olijfolie. Voeg paprika toe, bak 5 minuten.","Roer tomaten, harissa en kruiden erdoor. Laat 10 minuten sudderen.","Maak kuiltjes in de saus, breek een ei per kuiltje. Dek af, pocheer 4-6 minuten.","Bestrooi met verse kruiden en serveer direct met naanbrood."]},
+{flag:'🇲🇦',name:'Marokko',score:6.8,dish:'Gehaktballetjes in Saus op Broodje',about:"Marokko is een feest voor de zintuigen: kleurrijke souks, de geur van koriander en kaneel, en ovens die de hele dag brood bakken. Kefta — gehaktballetjes in pittige tomatensaus — is straatvoedsel op zijn best.",persons:2,
+spotify:'2SyvM3QTBniPoJ82B93xYx',spotifyLabel:'Aïcha — Khaled',
+ingredients:[{g:"Kefta"},["250 g rundergehakt (of lam/rund)","½ ui geraspt"],["1 teen knoflook, geperst","½ tl komijn"],["½ tl paprikapoeder","¼ tl kaneel"],["¼ tl chilivlokken","Peterselie, zout, peper"],{g:"Tomatensaus & Broodje"},["½ blik gepelde tomaten","½ ui, gesnipperd"],["1 teen knoflook","½ tl komijn + paprikapoeder"],["Verse koriander","2 Marokkaanse broodjes"]],
+steps:["Meng alle kefta-ingrediënten. Rol balletjes ter grootte van een walnoot.","Bak de balletjes rondom bruin in olijfolie. Leg apart.","Bak ui en knoflook in dezelfde pan. Voeg tomaten en kruiden toe, laat 10 min inkoken.","Leg de balletjes terug in de saus, laat 10-15 minuten sudderen.","Serveer op een broodje met verse koriander."]}
+]},
+{id:'azie',name:'Azië',emoji:'🌏',color:'#7c3aed',bg:'#110820',light:'#ddd6fe',dim:'#4c1d95',countries:[
+{flag:'🇮🇳',name:'India',score:8.5,dish:'Butter Chicken',about:"India is een subcontinent met evenveel smaken als mensen. De Punjabi keuken staat bekend om rijke, romige sauzen en tandoor-ovens. Butter chicken (murgh makhani) is een van de meest bestelde gerechten ter wereld.",persons:2,
+spotify:'4i3MgUew8ynhf49Qwr4IP4',spotifyLabel:'Jai Ho — A.R. Rahman',
+ingredients:[{g:"Marinade"},["300 g kipfilet in stukken","75 g volle yoghurt"],["1 tl garam masala","½ tl komijn + kurkuma + chilipoeder"],["1 teen knoflook, geperst","½ tl geraspte gember"],{g:"Saus"},["1 ui, gesnipperd","2 teentjes knoflook"],["½ blik gepelde tomaten","100 ml slagroom"],["30 g boter","1 tl garam masala + paprikapoeder"],["Verse koriander","Zout + suiker"]],
+steps:["Marineer de kip minimaal 2 uur (liefst een nacht) in de yoghurtmarinade.","Grill of bak de kip op hoge hitte tot licht geblakerd. Leg apart.","Smelt de boter, bak ui, knoflook en gember. Voeg kruiden toe, bak 1 minuut.","Voeg tomaten toe, laat 15 minuten sudderen. Blend de saus glad.","Roer de room erdoor, voeg de kip toe. Laat 10 minuten zachtjes pruttelen.","Breng op smaak en serveer met basmatirijst of naan en verse koriander."]},
+{flag:'🇸🇬',name:'Singapore',score:8.9,dish:'Murtabak',about:"Singapore is een culinaire metropool waar Chinese, Maleisische, Indiase en Britse invloeden samenkomen. Hawker centres zijn het kloppende hart van de eetcultuur. Murtabak — knapperig gevuld flatbread — is straatvoedsel op z'n puurste.",persons:2,
+spotify:'19I9vLd5zH7qwk69FGEp7o',spotifyLabel:'',
+ingredients:[{g:"Deeg"},["200 g bloem","½ tl zout"],["1 el olie","±100 ml water"],["Ghee of olie om te bakken",""],{g:"Vulling"},["200 g rundergehakt of lamsgehakt","2 eieren"],["1 ui, fijngesnipperd","1 teen knoflook"],["1 tl komijn + kurkuma + koriander","¼ tl chilipoeder"],["Verse bieslook","Zout en peper"],{g:"Serveren"},["Currysaus","Zoetzure augurksaus"]],
+steps:["Deeg: meng bloem, zout, olie en water. Kneed soepel, laat 30 min rusten, bestrijk met olie, laat nog 30 min rusten.","Vulling: bak ui en knoflook, voeg gehakt en kruiden toe. Laat afkoelen, klop de eieren erdoor.","Rek een deegbol zo dun mogelijk uit op een ingevette ondergrond — zo dun als papier.","Leg de vulling in het midden, vouw alle kanten naar binnen tot een stevig vierkant pakketje.","Bak in ruim ghee op middelhoog vuur, ±3-4 min per kant, tot goudbruin en knapperig.","Serveer met currysaus of zoetzure saus."]}
+]},
+{id:'europa',name:'Europa',emoji:'🌍',color:'#2563eb',bg:'#08112a',light:'#bfdbfe',dim:'#1e3a8a',countries:[
+{flag:'🇮🇹',name:'Italië',score:8.0,dish:'Bruschetta & Risotto',about:"Italië is het land waar eten een religie is. Van de rijstvelden in de Po-vlakte tot de Toscaanse heuvels vol olijfbomen. Bruschetta bewijst dat de eenvoudigste ingrediënten, perfect uitgevoerd, het allerlekkerst zijn.",persons:2,
+spotify:'6RI0jfAVCxHF78a6XbsT9l',spotifyLabel:'Volare — Domenico Modugno',
+ingredients:[{g:"Bruschetta"},["½ ciabatta of stokbrood","2 rijpe tomaten, fijngesneden"],["1 teen knoflook","Handvol verse basilicum"],["Olijfolie, zout, peper","Beetje balsamico"],{g:"Risotto"},["160 g Arborio risottorijst","1 ui, fijngesnipperd"],["1 teen knoflook","100 ml droge witte wijn"],["600 ml warme bouillon","30 g geraspte Parmezaan"],["30 g boter","Zout, peper"]],
+steps:["Bruschetta: rooster broodplakken, wrijf in met knoflook.","Meng tomaten met basilicum, olijfolie, zout en peper. Lepel op het brood met een scheutje balsamico.","Risotto: fruit ui en knoflook in boter. Voeg rijst toe, bak 2 min tot glazig.","Blus af met witte wijn, roer tot opgenomen. Voeg lepel voor lepel bouillon toe (±18-20 min), blijf roeren.","Haal van vuur, roer boter en Parmezaan erdoor. Laat 2 min rusten en serveer direct."]}
+]},
+{id:'antarctica',name:'Antarctica',emoji:'🧊',color:'#0891b2',bg:'#030f1a',light:'#a5f3fc',dim:'#164e63',countries:[
+{flag:'❄️',name:'Antarctica',score:8.0,dish:'Zwaardvis met Groentjes & Steppengras Friet',about:"Het koudste, droogste en winderigste continent op aarde. Onderzoeksstations doen wat ze kunnen met wat ze hebben: vis uit de ijskoude zuidelijke oceaan en creatieve bijgerechten. Zwaardvis is stevig, vleezig en perfect voor krachtige bereidingen.",persons:2,
+spotify:'0o3mVY1wt9Vaa74VkzdSK2',spotifyLabel:'Theme From Antarctica — Vangelis',
+ingredients:[{g:"Zwaardvis"},["2 zwaardvissteaks (±180 g p.p.)","Olijfolie + citroen + knoflook"],["Verse tijm of rozemarijn","Zout en peper"],{g:"Groentjes"},["½ broccoli","Stukjes courgette + ½ paprika"],["Olijfolie, zout","Knoflookpoeder"],{g:"Steppengras Friet"},["300 g zoete aardappel of pastinaak","Olijfolie"],["Komijn","Paprikapoeder"]],
+steps:["Groentjes: snijd in stukken, bestrooi met olie en kruiden. Rooster op 200°C, ±25 min.","Friet: snijd zoete aardappel in staven, bestrooi met olie en kruiden. Rooster op 220°C, ±20-25 min, halverwege omdraaien.","Marineer de zwaardvis 15 min in olijfolie, citroensap, knoflook en kruiden.","Grill of bak op hoge hitte, ±3-4 min per kant. Mag van binnen nog licht roze zijn.","Serveer met groentjes en friet, bedruppeld met extra citroensap."]}
+]},
+{id:'oceanie',name:'Oceanië',emoji:'🌏',color:'#16a34a',bg:'#041509',light:'#bbf7d0',dim:'#14532d',countries:[
+{flag:'🇦🇺',name:'Australië',score:9.2,dish:'Kangoeroe Steak & Staart, Broccoli & Aardappelen',about:"Australië is het land van de outback, de didgeridoo en de kangoeroe. De Aboriginals jaagden er al duizenden jaren op — het vlees is mager, smaakvol en rijk aan ijzer. Een echte Australische barbecue-ervaring op zijn best.",persons:2,
+spotify:'5c7fPE77YRElAsUUXNvpGr',spotifyLabel:'Down Under — Men At Work',
+ingredients:[{g:"Kangoeroe"},["2 kangoeroe steaks (bij gespec. slager of online)","1 stuk kangoeroe staart (optioneel)"],["Olijfolie, zout, peper","1 teen knoflook"],["Tijm, rozemarijn","1 el Worcestershiresaus"],{g:"Bijgerechten"},["½ broccoli, in roosjes","400 g aardappelen, in partjes"],["Boter","Knoflook, zout"]],
+steps:["Staart (indien gebruikt): bak rondom aan, voeg bouillon en kruiden toe. Stoof 2-3 uur op laag vuur.","Aardappelpartjes: bestrooi met olie, zout en rozemarijn. Rooster op 200°C, ±35 min.","Broccoli: stoom beetgaar (±5 min), bak kort in boter met knoflook.","Steak: laat op kamertemperatuur komen. Bestrijk met olie, kruid met zout en peper.","Grill op zeer hoge hitte, ±2-3 min per kant. Niet te ver doorbakken — medium-rare is ideaal.","Laat 5 min rusten. Serveer met aardappelen en broccoli."]}
+]}
 ]};
 
 function stars(score){
@@ -75,7 +123,172 @@ function backBtn(onclick, label){
   </button>`;
 }
 
+function allCountries(){
+  return D.continents.flatMap(c=>c.countries.map(co=>({...co,continent:c})));
+}
+
+function renderSearch(){
+  return`<div style="position:relative;margin-bottom:24px;">
+    <svg style="position:absolute;left:14px;top:50%;transform:translateY(-50%);pointer-events:none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4a5568" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input id="search" class="search-input" type="text" placeholder="Zoek op continent, land of gerecht…"
+      oninput="handleSearch(this.value)"
+      style="width:100%;background:#13131f;border:1px solid #2a2a44;border-radius:10px;padding:12px 14px 12px 40px;font-size:14px;color:#e2e8f0;outline:none;font-family:'Poppins',sans-serif;">
+  </div>
+  <div id="search-results"></div>`;
+}
+
+function handleSearch(q){
+  const results=document.getElementById('search-results');
+  const toc=document.getElementById('toc-section');
+  if(!q.trim()){
+    results.innerHTML='';
+    if(toc)toc.style.display='';
+    return;
+  }
+  const lower=q.toLowerCase();
+  const matches=allCountries().filter(co=>
+    co.name.toLowerCase().includes(lower)||
+    co.dish.toLowerCase().includes(lower)||
+    co.continent.name.toLowerCase().includes(lower)
+  );
+  if(toc)toc.style.display='none';
+  if(!matches.length){
+    results.innerHTML=`<p style="font-size:13px;color:#4a5568;text-align:center;padding:32px 0;">Geen resultaten voor "${q}"</p>`;
+    return;
+  }
+  results.innerHTML=matches.map(co=>`
+    <div class="country-row" onclick="showRecipe('${co.continent.id}','${co.name}')" style="background:#1e1e32;border:0.5px solid #2a2a44;border-radius:12px;padding:14px 18px;cursor:pointer;display:flex;align-items:center;gap:14px;margin-bottom:8px;">
+      <span style="font-size:28px;line-height:1;flex-shrink:0;">${co.flag}</span>
+      <div style="flex:1;min-width:0;">
+        <div style="font-size:14px;font-weight:600;color:#e2e8f0;">${co.name}</div>
+        <div style="font-size:11px;color:${co.continent.color};font-weight:500;margin-top:1px;">${co.continent.emoji} ${co.continent.name}</div>
+        <div style="font-size:12px;color:#94a3b8;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${co.dish}</div>
+      </div>
+      <span style="font-size:13px;font-weight:700;padding:4px 12px;border-radius:20px;flex-shrink:0;${scoreBadgeStyle(co.score)}">${co.score}</span>
+    </div>`).join('');
+}
+
 function renderCover(){
-  const allCountries=D.continents.reduce((a,c)=>a+c.countries.length,0);
+  const allC=D.continents.reduce((a,c)=>a+c.countries.length,0);
   return`<div class="cover-inner" style="background:#0f0f1a;border-radius:16px;padding:56px 32px 48px;text-align:center;margin-bottom:0;position:relative;overflow:hidden;">
-  <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;" viewBox="0 0 720 340" preserveAspectRatio="xMidYMid slice"> ...  ... << finish updated content to include reduction time. (and ensure length)<<:.
+  <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;" viewBox="0 0 720 340" preserveAspectRatio="xMidYMid slice">
+    ${[...Array(70)].map((_,i)=>{const x=(Math.sin(i*1.9+1)*360+360).toFixed(0);const y=(Math.cos(i*1.3+0.5)*160+170).toFixed(0);const r=i%7===0?1.8:i%3===0?1.2:0.7;const op=(0.15+Math.abs(Math.sin(i*0.8))*0.4).toFixed(2);return`<circle cx="${x}" cy="${y}" r="${r}" fill="#e2e8f0" opacity="${op}"/>`}).join('')}
+  </svg>
+  <div style="position:relative;z-index:1;">
+    <div style="width:72px;height:72px;border-radius:50%;border:1.5px solid #d97706;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;">
+      <div style="width:48px;height:48px;border-radius:50%;border:1px solid #d9770688;display:flex;align-items:center;justify-content:center;font-size:24px;">🍽️</div>
+    </div>
+    <h1 style="font-size:clamp(22px,5vw,32px);font-weight:700;color:#fef3c7;letter-spacing:3px;margin:0 0 8px;">KEUKEN KAMPIOEN</h1>
+    <p style="font-size:13px;color:#92400e;letter-spacing:2px;margin:0 0 28px;font-weight:500;">EEN CULINAIRE REIS LANGS ALLE CONTINENTEN</p>
+    <div style="display:inline-flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-bottom:32px;">
+      ${[`${allC} landen`,`${D.continents.length} continenten`,'Voor 2 personen'].map(t=>`<span style="font-size:12px;color:#d97706;border:1px solid #d9770655;padding:5px 14px;border-radius:4px;letter-spacing:1px;">${t.toUpperCase()}</span>`).join('')}
+    </div>
+  </div>
+</div>
+<div style="padding:28px 0 8px;">
+  ${renderSearch()}
+  <div id="toc-section">
+    <p style="font-size:11px;font-weight:600;letter-spacing:2px;color:#94a3b8;margin:0 0 16px;">INHOUDSOPGAVE</p>
+    <div class="toc-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;">
+      ${D.continents.map(c=>`<div class="cont-card" onclick="showCont('${c.id}')" style="background:#1e1e32;border:0.5px solid #2a2a44;border-radius:12px;padding:16px 18px;cursor:pointer;border-left:3px solid ${c.color};">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+          <span style="font-size:18px;">${c.emoji}</span>
+          <span style="font-size:13px;font-weight:600;color:#e2e8f0;">${c.name}</span>
+        </div>
+        ${c.countries.map(co=>`<div style="display:flex;align-items:center;gap:6px;margin-top:6px;">
+          <span style="font-size:14px;">${co.flag}</span>
+          <span style="font-size:12px;color:#94a3b8;">${co.name}</span>
+          <span style="margin-left:auto;font-size:11px;font-weight:600;padding:2px 7px;border-radius:20px;${scoreBadgeStyle(co.score)}">${co.score}</span>
+        </div>`).join('')}
+      </div>`).join('')}
+    </div>
+  </div>
+</div>`;
+}
+
+function renderCont(cid){
+  const c=D.continents.find(x=>x.id===cid);
+  return`<div>
+  ${backBtn('showHome()','Keuken Kampioen')}
+  <div style="background:${c.bg};border-radius:16px;padding:28px 24px 22px;margin-bottom:20px;border-left:4px solid ${c.color};">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+      <span style="font-size:28px;">${c.emoji}</span>
+      <div>
+        <h2 style="font-size:clamp(18px,4vw,24px);font-weight:700;color:${c.light};margin:0 0 3px;">${c.name}</h2>
+        <p style="font-size:12px;color:${c.dim};margin:0;letter-spacing:1px;font-weight:500;">${c.countries.length} ${c.countries.length===1?'LAND':'LANDEN'} BEZOCHT</p>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:10px;">
+    ${c.countries.map(co=>`<div class="country-row" onclick="showRecipe('${cid}','${co.name}')" style="background:#1e1e32;border:0.5px solid #2a2a44;border-radius:12px;padding:16px 20px;cursor:pointer;display:flex;align-items:center;gap:14px;">
+      <span style="font-size:32px;line-height:1;flex-shrink:0;">${co.flag}</span>
+      <div style="flex:1;min-width:0;">
+        <div style="font-size:15px;font-weight:600;color:#e2e8f0;">${co.name}</div>
+        <div style="font-size:12px;color:#94a3b8;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${co.dish}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">
+        <span style="font-size:15px;font-weight:700;padding:5px 14px;border-radius:20px;${scoreBadgeStyle(co.score)}">${co.score}</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="color:#94a3b8"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+    </div>`).join('')}
+  </div>
+</div>`;
+}
+
+function renderRecipe(cid,cname){
+  const c=D.continents.find(x=>x.id===cid);
+  const co=c.countries.find(x=>x.name===cname);
+  let ingHTML='';
+  co.ingredients.forEach(row=>{
+    if(row.g){ingHTML+=`<div style="grid-column:1/-1;font-size:11px;font-weight:600;letter-spacing:1.5px;color:${c.color};padding-top:8px;padding-bottom:4px;">${row.g.toUpperCase()}</div>`;return;}
+    row.forEach(item=>{if(item.trim())ingHTML+=`<div class="ing-chip" style="font-size:13px;color:#e2e8f0;background:#13131f;border-radius:8px;padding:8px 11px;">${item}</div>`;});
+  });
+  const spotifyEmbed=co.spotify?`<div style="margin-bottom:20px;">
+    <p style="font-size:11px;font-weight:600;letter-spacing:1.5px;color:#94a3b8;margin:0 0 12px;padding-bottom:8px;border-bottom:0.5px solid #2a2a44;">SPOTIFY${co.spotifyLabel?` — ${co.spotifyLabel}`:''}</p>
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${co.spotify}?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  </div>`:'';
+  return`<div>
+  ${backBtn(`showCont('${cid}')`,c.name)}
+  <div style="background:${c.bg};border-radius:16px;padding:28px 24px;margin-bottom:20px;border-left:4px solid ${c.color};">
+    <span style="font-size:48px;display:block;margin-bottom:12px;line-height:1;">${co.flag}</span>
+    <p style="font-size:11px;letter-spacing:2px;color:${c.color};margin:0 0 6px;font-weight:600;">${c.name.toUpperCase()}</p>
+    <h2 style="font-size:clamp(16px,3.5vw,22px);font-weight:700;color:${c.light};margin:0 0 14px;line-height:1.3;">${co.name} — ${co.dish}</h2>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <span style="font-size:12px;padding:4px 12px;border-radius:20px;border:1px solid ${c.color}44;color:${c.color};font-weight:500;">Voor ${co.persons} personen</span>
+      <span style="font-size:12px;padding:4px 12px;border-radius:20px;${scoreBadgeStyle(co.score)};font-weight:600;">${co.score} / 10</span>
+    </div>
+  </div>
+  <div style="background:#13131f;border-radius:12px;padding:20px 24px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+    <div>
+      <p style="font-size:11px;letter-spacing:1.5px;color:#94a3b8;margin:0 0 6px;font-weight:600;">SCORE</p>
+      <div style="font-size:38px;font-weight:700;${scoreBadgeStyle(co.score).includes('4ade')?'color:#4ade80':scoreBadgeStyle(co.score).includes('86ef')?'color:#86efac':scoreBadgeStyle(co.score).includes('fde0')?'color:#fde047':'color:#f87171'};">${co.score}</div>
+    </div>
+    <div style="font-size:22px;${co.score>=8?'color:#86efac':co.score>=7?'color:#fde047':'color:#f87171'}">${stars(co.score)}</div>
+  </div>
+  <div style="background:#13131f;border-radius:0 12px 12px 0;padding:16px 20px;margin-bottom:20px;border-left:3px solid ${c.color}33;">
+    <p style="font-size:11px;font-weight:600;letter-spacing:1.5px;color:#94a3b8;margin:0 0 8px;">OVER DIT LAND</p>
+    <p style="font-size:14px;color:#94a3b8;line-height:1.75;margin:0;">${co.about}</p>
+  </div>
+  <div style="margin-bottom:20px;">
+    <p style="font-size:11px;font-weight:600;letter-spacing:1.5px;color:#94a3b8;margin:0 0 12px;padding-bottom:8px;border-bottom:0.5px solid #2a2a44;">INGREDIËNTEN</p>
+    <div class="recipe-ing-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:7px;">${ingHTML}</div>
+  </div>
+  <div style="margin-bottom:20px;">
+    <p style="font-size:11px;font-weight:600;letter-spacing:1.5px;color:#94a3b8;margin:0 0 12px;padding-bottom:8px;border-bottom:0.5px solid #2a2a44;">BEREIDING</p>
+    ${co.steps.map((s,i)=>`<div style="display:flex;gap:12px;margin-bottom:12px;align-items:flex-start;">
+      <div style="width:26px;height:26px;border-radius:50%;background:${c.bg};border:1.5px solid ${c.color};display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:${c.color};flex-shrink:0;margin-top:1px;">${i+1}</div>
+      <p style="font-size:14px;color:#e2e8f0;line-height:1.7;margin:0;padding-top:3px;">${s}</p>
+    </div>`).join('')}
+  </div>
+  ${spotifyEmbed}
+</div>`;
+}
+
+function showHome(){document.getElementById('app').innerHTML=renderCover();}
+function showCont(id){document.getElementById('app').innerHTML=renderCont(id);scrollToTop();}
+function showRecipe(cid,n){document.getElementById('app').innerHTML=renderRecipe(cid,n);scrollToTop();}
+function scrollToTop(){try{window.scrollTo({top:0,behavior:'smooth'});}catch(e){}}
+showHome();
+</script>
+</body>
+</html>
