@@ -1,0 +1,68 @@
+name: Claude Edit
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  edit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install anthropic
+
+      - name: Edit with Claude
+        id: claude
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: python .github/scripts/claude_edit.py
+
+      - name: Commit and push
+        run: |
+          git config user.name "Claude Bot"
+          git config user.email "claude-bot@noreply.github.com"
+          git add index.html
+          git diff --staged --quiet && echo "Geen wijzigingen" || git commit -m "✨ ${{ github.event.issue.title }}"
+          git push
+
+      - name: Comment and close issue
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: '✅ Klaar! De wijziging is doorgevoerd. Vercel deployt automatisch binnen ~30 seconden.'
+            });
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              state: 'closed'
+            });
+
+      - name: Comment error on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: '❌ Er ging iets mis. Controleer de [Action logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) voor details.'
+            });
