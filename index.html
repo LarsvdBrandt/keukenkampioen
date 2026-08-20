@@ -725,19 +725,28 @@ function ornament(){
 function scrollTop(){try{window.scrollTo({top:0,behavior:'smooth'});}catch(e){window.scrollTo(0,0);}}
 
 /* ---------- Page turn ---------- */
+let navBusy=false;
 function nav(fn){
+  if(navBusy)return;
   const app=document.getElementById('app');
   const cur=app.querySelector('.page-inner');
   const finish=()=>{
     app.innerHTML=fn();
     scrollTop();
     const inner=app.querySelector('.page-inner');
-    if(inner)inner.classList.add('turning-in');
+    if(inner){
+      inner.classList.remove('turning-out');
+      inner.classList.add('turning-in');
+    }
     applyStagger();
+    navBusy=false;
   };
   if(!cur){finish();return;}
+  navBusy=true;
+  cur.classList.remove('turning-in');
+  void cur.offsetWidth;
   cur.classList.add('turning-out');
-  cur.addEventListener('animationend',finish,{once:true});
+  setTimeout(finish,380);
 }
 function applyStagger(){
   document.querySelectorAll('.stagger').forEach(box=>{
