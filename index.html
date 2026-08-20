@@ -1,45 +1,609 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Keuken Kampioen</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/tailwindcss-cdn@3.4.3/tailwindcss.js"></script>
-  <style>
-    :root {
-      --color-text-primary: #e2e8f0;
-      --color-text-secondary: #94a3b8;
-      --color-background-primary: #1e1e32;
-      --color-background-secondary: #13131f;
-      --color-border-tertiary: #2a2a44;
-      --color-border-secondary: #3a3a5a;
-    }
-    *{font-family:'Poppins',sans-serif;box-sizing:border-box;}
-    body{margin:0;background:#0a0a14;}
-    .star-half{display:inline-block;width:1em;height:1em;vertical-align:-0.15em;position:relative;}
-    .star-half svg{width:1em;height:1em;}
-    .cont-card{transition:transform 0.15s,box-shadow 0.15s;}
-    .cont-card:hover{transform:translateY(-2px);}
-    .country-row{transition:background 0.1s;}
-    .back-btn{transition:opacity 0.15s;}
-    .back-btn:hover{opacity:0.7;}
-    .ing-chip{line-height:1.35;}
-    .search-input::placeholder{color:#4a5568;}
-    @media(max-width:480px){
-      .recipe-ing-grid{grid-template-columns:1fr!important;}
-      .toc-grid{grid-template-columns:1fr!important;}
-      .cover-inner{padding:36px 20px 32px!important;}
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keuken Kampioen — Een Culinaire Reis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f5eddc;
+  --paper-light:#fbf5e6;
+  --paper-dark:#ede2c8;
+  --paper-edge:#d9ca9f;
+  --ink:#2a1f14;
+  --ink-soft:#4a3a26;
+  --ink-muted:#8a7657;
+  --accent:#a06a2e;
+  --accent-dark:#7a4e1e;
+  --accent-light:#c58c4a;
+  --gold:#b8873c;
+  --border:#d9c9a3;
+  --border-soft:#e8dcbe;
+  --shadow-1:0 1px 2px rgba(60,40,10,.05);
+  --shadow-2:0 4px 12px -2px rgba(60,40,10,.08);
+  --shadow-3:0 12px 32px -8px rgba(60,40,10,.18);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Inter',system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{min-height:100vh;}
+body{
+  background:#d8c9a4;
+  background-image:
+    radial-gradient(ellipse at top,#e5d5ac 0%,#c9b98e 100%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.4 0 0 0 0 0.25 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-blend-mode:multiply;
+  font-family:var(--sans);
+  color:var(--ink);
+  padding:24px 16px;
+  min-height:100vh;
+}
+.book{
+  max-width:780px;
+  margin:0 auto;
+  background:var(--paper);
+  border-radius:4px 8px 8px 4px;
+  box-shadow:
+    inset 6px 0 8px -6px rgba(80,50,10,.25),
+    0 1px 2px rgba(60,40,10,.1),
+    0 30px 60px -20px rgba(60,40,10,.35),
+    0 60px 120px -40px rgba(60,40,10,.4);
+  position:relative;
+  overflow:hidden;
+  min-height:calc(100vh - 48px);
+}
+.book::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:14px;
+  background:linear-gradient(90deg,rgba(80,50,10,.18) 0%,rgba(80,50,10,.05) 60%,transparent 100%);
+  pointer-events:none;z-index:3;
+}
+.book::after{
+  content:'';position:absolute;right:0;top:0;bottom:0;width:6px;
+  background:linear-gradient(90deg,transparent,rgba(80,50,10,.08));
+  pointer-events:none;z-index:3;
+}
+.page{
+  padding:52px 56px 40px;
+  min-height:calc(100vh - 48px);
+  position:relative;
+  background-image:
+    radial-gradient(ellipse 120% 60% at 50% 0%,rgba(160,120,50,.06),transparent 70%),
+    radial-gradient(ellipse 100% 40% at 50% 100%,rgba(160,120,50,.05),transparent 70%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.4 0 0 0 0 0.25 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@media (max-width:640px){
+  body{padding:8px;}
+  .book{border-radius:3px;}
+  .page{padding:32px 22px 28px;}
+}
+
+/* Page turn */
+#app{transform-style:preserve-3d;perspective:1400px;min-height:70vh;}
+.page-inner{
+  transform-origin:left center;
+  will-change:transform,opacity;
+}
+.page-inner.turning-out{animation:pageOut .4s cubic-bezier(.55,.05,.68,.19) forwards;}
+.page-inner.turning-in{animation:pageIn .55s cubic-bezier(.19,1,.22,1);}
+@keyframes pageOut{
+  0%{opacity:1;transform:perspective(1400px) rotateY(0) translateX(0);}
+  100%{opacity:0;transform:perspective(1400px) rotateY(-28deg) translateX(-40px);}
+}
+@keyframes pageIn{
+  0%{opacity:0;transform:perspective(1400px) rotateY(28deg) translateX(40px);}
+  100%{opacity:1;transform:perspective(1400px) rotateY(0) translateX(0);}
+}
+
+/* Stagger reveal */
+.stagger>*{opacity:0;animation:riseIn .5s cubic-bezier(.19,1,.22,1) forwards;}
+@keyframes riseIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+/* Typography */
+h1,h2,h3,.serif{font-family:var(--serif);font-weight:500;}
+
+.ornament{
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  color:var(--accent);margin:24px 0;opacity:.5;
+}
+.ornament::before,.ornament::after{
+  content:'';height:1px;background:currentColor;flex:1;max-width:100px;
+}
+.ornament svg{width:16px;height:16px;}
+
+/* ===== COVER ===== */
+.cover-eyebrow{
+  text-align:center;font-family:var(--sans);
+  font-size:10px;letter-spacing:5px;color:var(--ink-muted);
+  text-transform:uppercase;font-weight:600;margin-bottom:16px;
+}
+.cover-title{
+  font-family:var(--serif);font-weight:600;
+  font-size:clamp(48px,11vw,88px);
+  color:var(--ink);line-height:.95;letter-spacing:-.01em;
+  text-align:center;
+}
+.cover-title .amp{color:var(--accent);font-style:italic;font-weight:500;}
+.cover-sub{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(15px,3vw,20px);
+  color:var(--ink-muted);text-align:center;margin-top:14px;
+}
+.cover-crest{
+  width:64px;height:64px;margin:0 auto 20px;
+  border:1.5px solid var(--accent);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;position:relative;
+}
+.cover-crest::before,.cover-crest::after{
+  content:'';position:absolute;width:4px;height:4px;border-radius:50%;background:var(--accent);
+}
+.cover-crest::before{top:-2px;}
+.cover-crest::after{bottom:-2px;}
+
+.stats-row{
+  display:flex;justify-content:center;gap:36px;margin:28px 0 20px;flex-wrap:wrap;
+}
+.stat{text-align:center;}
+.stat-num{
+  font-family:var(--serif);font-size:36px;font-weight:600;color:var(--accent-dark);
+  display:block;line-height:1;
+}
+.stat-label{
+  font-size:10px;letter-spacing:2px;color:var(--ink-muted);
+  text-transform:uppercase;margin-top:4px;
+}
+
+/* Top scores */
+.top-scores{
+  background:linear-gradient(180deg,var(--paper-light),var(--paper));
+  border:1px solid var(--border);border-radius:8px;
+  padding:24px 22px;margin:28px 0 8px;
+  position:relative;
+}
+.top-scores-header{
+  display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:16px;
+}
+.top-scores-header h3{
+  font-family:var(--serif);font-style:italic;font-size:22px;color:var(--ink);
+}
+.top-scores-header .laurel{color:var(--gold);font-size:22px;}
+.podium{display:flex;flex-direction:column;gap:8px;}
+.podium-item{
+  display:flex;align-items:center;gap:14px;
+  padding:12px 14px;border-radius:6px;
+  background:var(--paper);border:1px solid var(--border-soft);
+  cursor:pointer;transition:all .2s cubic-bezier(.19,1,.22,1);
+  position:relative;overflow:hidden;
+}
+.podium-item::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--continent-color,var(--accent));opacity:.5;
+}
+.podium-item:hover{
+  transform:translateX(4px);
+  box-shadow:var(--shadow-2);
+  border-color:var(--continent-color,var(--accent));
+}
+.podium-item:hover::before{opacity:1;}
+.podium-rank{
+  font-family:var(--serif);font-style:italic;
+  font-size:26px;font-weight:600;
+  color:var(--gold);width:28px;text-align:center;
+}
+.podium-rank.rank-1{color:#c8951a;}
+.podium-rank.rank-2{color:#9a8060;}
+.podium-rank.rank-3{color:#8b6237;}
+.podium-flag{font-size:26px;line-height:1;}
+.podium-info{flex:1;min-width:0;}
+.podium-name{
+  font-family:var(--serif);font-weight:600;color:var(--ink);
+  font-size:18px;line-height:1.1;
+}
+.podium-dish{
+  font-size:11.5px;color:var(--ink-muted);margin-top:2px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.podium-score{
+  font-family:var(--serif);font-size:22px;font-weight:600;
+  color:var(--accent-dark);padding:2px 12px;
+  background:var(--paper-dark);border-radius:20px;line-height:1.2;
+}
+
+/* Search */
+.search-wrap{position:relative;margin:32px 0 20px;}
+.search-input{
+  width:100%;background:var(--paper-light);
+  border:1px solid var(--border);border-radius:6px;
+  padding:13px 16px 13px 44px;font-size:14px;
+  color:var(--ink);font-family:var(--sans);outline:none;
+  transition:border-color .15s,box-shadow .15s;
+}
+.search-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(160,106,46,.12);}
+.search-input::placeholder{color:var(--ink-muted);font-style:italic;}
+.search-icon{
+  position:absolute;left:16px;top:50%;transform:translateY(-50%);
+  color:var(--ink-muted);pointer-events:none;
+}
+
+/* TOC */
+.toc-title{
+  font-family:var(--serif);font-style:italic;font-size:24px;
+  color:var(--ink);text-align:center;margin:8px 0 20px;
+}
+.continents{display:flex;flex-direction:column;gap:10px;}
+.continent-card{
+  background:var(--paper-light);border:1px solid var(--border);
+  border-radius:6px;padding:18px 22px;cursor:pointer;
+  transition:all .25s cubic-bezier(.19,1,.22,1);
+  display:flex;align-items:center;gap:16px;
+  position:relative;overflow:hidden;
+}
+.continent-card::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
+  background:var(--continent-color,var(--accent));
+}
+.continent-card::after{
+  content:'';position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:linear-gradient(90deg,var(--continent-color,var(--accent)),transparent);
+  opacity:0;transition:opacity .3s;
+}
+.continent-card:hover{
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-2);
+}
+.continent-card:hover::after{opacity:.4;}
+.continent-emoji{
+  font-size:32px;line-height:1;
+  transition:transform .3s cubic-bezier(.19,1,.22,1);
+}
+.continent-card:hover .continent-emoji{transform:scale(1.15) rotate(-5deg);}
+.continent-info{flex:1;min-width:0;}
+.continent-name{
+  font-family:var(--serif);font-size:22px;font-weight:600;
+  color:var(--ink);line-height:1.1;
+}
+.continent-meta{
+  font-size:11px;color:var(--ink-muted);letter-spacing:1.5px;
+  margin-top:4px;text-transform:uppercase;font-weight:500;
+}
+.continent-preview{
+  display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;
+}
+.continent-preview span{font-size:18px;line-height:1;}
+.continent-arrow{
+  color:var(--continent-color,var(--accent));
+  transition:transform .25s;
+}
+.continent-card:hover .continent-arrow{transform:translateX(4px);}
+
+/* Search results */
+.search-results{display:flex;flex-direction:column;gap:8px;}
+.search-empty{
+  text-align:center;padding:40px 0;
+  font-family:var(--serif);font-style:italic;
+  color:var(--ink-muted);font-size:16px;
+}
+.result-row{
+  display:flex;align-items:center;gap:14px;
+  padding:12px 16px;background:var(--paper-light);
+  border:1px solid var(--border-soft);border-radius:6px;
+  cursor:pointer;transition:all .2s;
+}
+.result-row:hover{transform:translateX(4px);box-shadow:var(--shadow-2);}
+.result-flag{font-size:26px;}
+.result-info{flex:1;min-width:0;}
+.result-name{font-family:var(--serif);font-weight:600;font-size:17px;color:var(--ink);}
+.result-continent{font-size:10px;letter-spacing:1.5px;color:var(--continent-color);margin-top:1px;font-weight:600;text-transform:uppercase;}
+.result-dish{font-size:12px;color:var(--ink-muted);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+/* ===== CHAPTER (continent) ===== */
+.back-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--serif);font-style:italic;font-size:15px;
+  color:var(--ink-muted);background:none;border:none;
+  cursor:pointer;padding:0;margin-bottom:24px;
+  transition:color .15s,transform .2s;
+}
+.back-btn:hover{color:var(--accent-dark);transform:translateX(-4px);}
+.back-btn svg{width:16px;height:16px;}
+
+.chapter-header{
+  text-align:center;padding:16px 0 28px;
+  margin-bottom:24px;
+  border-bottom:1px solid var(--border);
+  position:relative;
+}
+.chapter-emoji{
+  font-size:44px;display:block;margin-bottom:8px;
+  animation:float 3s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+.chapter-num{
+  font-family:var(--serif);font-style:italic;font-size:13px;
+  color:var(--ink-muted);letter-spacing:4px;text-transform:uppercase;
+}
+.chapter-title{
+  font-family:var(--serif);font-size:clamp(36px,7vw,54px);
+  font-weight:600;color:var(--ink);margin:6px 0;line-height:1;letter-spacing:-.01em;
+}
+.chapter-sub{
+  font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-muted);
+}
+.chapter-underline{
+  width:60px;height:2px;background:var(--continent-color,var(--accent));
+  margin:16px auto 0;border-radius:2px;
+}
+
+.country-list{display:flex;flex-direction:column;gap:10px;}
+.country-row{
+  display:flex;align-items:center;gap:16px;
+  padding:16px 20px;background:var(--paper-light);
+  border:1px solid var(--border);border-radius:6px;
+  cursor:pointer;transition:all .25s cubic-bezier(.19,1,.22,1);
+  position:relative;overflow:hidden;
+}
+.country-row::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--continent-color,var(--accent));
+  transform:scaleY(0);transform-origin:center;transition:transform .3s;
+}
+.country-row:hover{
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-2);
+  border-color:var(--continent-color,var(--accent));
+}
+.country-row:hover::before{transform:scaleY(1);}
+.country-flag{
+  font-size:38px;line-height:1;
+  transition:transform .3s cubic-bezier(.19,1,.22,1);
+}
+.country-row:hover .country-flag{transform:scale(1.12) rotate(-4deg);}
+.country-info{flex:1;min-width:0;}
+.country-name{
+  font-family:var(--serif);font-size:22px;font-weight:600;
+  color:var(--ink);line-height:1.1;
+}
+.country-dish{
+  font-size:13px;color:var(--ink-muted);margin-top:4px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.score-badge{
+  font-family:var(--serif);font-size:20px;font-weight:600;
+  padding:4px 14px;border-radius:30px;line-height:1.2;
+  background:var(--paper-dark);
+}
+.score-high{color:#4d6b2b;background:#e5eecf;}
+.score-mid{color:#8a6a1a;background:#f2e6bd;}
+.score-low{color:#95361f;background:#f0d5cc;}
+.country-arrow{
+  color:var(--ink-muted);opacity:.6;
+  transition:transform .25s,opacity .25s;
+}
+.country-row:hover .country-arrow{
+  transform:translateX(4px);opacity:1;color:var(--continent-color,var(--accent));
+}
+
+/* ===== RECIPE PAGE ===== */
+.recipe-hero{
+  text-align:center;padding:8px 0 20px;position:relative;
+}
+.recipe-hero-flag{
+  font-size:64px;display:inline-block;margin-bottom:8px;
+  filter:drop-shadow(0 4px 12px rgba(0,0,0,.12));
+  animation:heroFloat .8s cubic-bezier(.19,1,.22,1);
+}
+@keyframes heroFloat{from{opacity:0;transform:translateY(10px) scale(.9);}to{opacity:1;transform:translateY(0) scale(1);}}
+.recipe-eyebrow{
+  font-family:var(--sans);font-size:11px;
+  letter-spacing:3px;color:var(--ink-muted);
+  text-transform:uppercase;font-weight:600;margin-bottom:8px;
+}
+.recipe-country{
+  font-family:var(--serif);font-size:clamp(34px,6vw,48px);
+  font-weight:600;color:var(--ink);line-height:1;
+  letter-spacing:-.01em;
+}
+.recipe-dish{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(18px,3.5vw,22px);
+  color:var(--accent-dark);margin-top:8px;line-height:1.3;
+}
+.recipe-meta{
+  display:flex;justify-content:center;gap:20px;
+  margin-top:16px;flex-wrap:wrap;
+}
+.recipe-meta-item{
+  font-family:var(--serif);font-size:14px;color:var(--ink-muted);
+  display:flex;align-items:center;gap:6px;
+}
+.recipe-meta-item svg{width:14px;height:14px;color:var(--accent);}
+
+/* Location card with map */
+.location-card{
+  display:grid;grid-template-columns:auto 1fr auto;gap:20px;
+  align-items:center;
+  background:linear-gradient(180deg,var(--paper-light),var(--paper));
+  border:1px solid var(--border);border-radius:8px;
+  padding:18px 22px;margin:24px 0;
+  position:relative;
+}
+.location-card::after{
+  content:'';position:absolute;top:8px;right:8px;
+  width:10px;height:10px;border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,var(--accent-light),var(--accent-dark));
+  box-shadow:0 0 0 3px var(--paper),0 0 0 4px var(--border);
+  opacity:.7;
+}
+.map-frame{
+  width:96px;height:96px;
+  background:var(--paper-light);
+  border:1px solid var(--border);
+  border-radius:4px;padding:8px;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+}
+.map-frame::before{
+  content:'';position:absolute;inset:3px;
+  border:1px dashed var(--border);
+  border-radius:2px;pointer-events:none;
+}
+.map-frame img{
+  max-width:100%;max-height:100%;
+  filter:sepia(.6) saturate(1.4) hue-rotate(-15deg) brightness(.85);
+  transition:transform .5s cubic-bezier(.19,1,.22,1);
+}
+.map-frame:hover img{transform:scale(1.1);}
+.map-fallback{
+  font-size:36px;color:var(--accent);opacity:.6;
+}
+.location-info{
+  font-family:var(--serif);font-size:15px;
+  color:var(--ink-soft);line-height:1.6;
+}
+.location-info .capital{
+  font-weight:600;font-size:17px;color:var(--ink);
+  display:block;margin-bottom:2px;
+}
+.location-info .coords{
+  font-family:var(--sans);font-size:10.5px;letter-spacing:1px;
+  color:var(--ink-muted);margin-top:4px;text-transform:uppercase;
+}
+.location-score{text-align:center;}
+.location-score .num{
+  font-family:var(--serif);font-size:38px;font-weight:600;
+  line-height:1;color:var(--accent-dark);
+}
+.location-score .of{
+  font-family:var(--serif);font-style:italic;
+  font-size:12px;color:var(--ink-muted);
+}
+.location-stars{color:var(--gold);font-size:14px;margin-top:2px;letter-spacing:2px;}
+
+@media (max-width:520px){
+  .location-card{grid-template-columns:auto 1fr;padding:16px;}
+  .location-score{grid-column:1/-1;padding-top:12px;border-top:1px dashed var(--border);display:flex;align-items:baseline;justify-content:center;gap:10px;}
+  .location-score .num{font-size:32px;}
+  .map-frame{width:78px;height:78px;}
+}
+
+/* About section — drop cap */
+.about-section{margin:32px 0;}
+.about-section p{
+  font-family:var(--serif);font-size:17px;line-height:1.8;
+  color:var(--ink-soft);text-align:justify;
+  hyphens:auto;
+}
+.about-section p::first-letter{
+  font-family:var(--serif);font-size:64px;font-weight:600;
+  float:left;line-height:.85;
+  padding:6px 10px 0 0;
+  color:var(--accent-dark);
+}
+
+/* Section titles */
+.section-title{
+  font-family:var(--serif);font-style:italic;font-size:22px;
+  color:var(--ink);margin:36px 0 16px;
+  display:flex;align-items:center;gap:14px;
+}
+.section-title::before,.section-title::after{
+  content:'';flex:1;height:1px;background:var(--border);
+}
+
+/* Ingredients */
+.ing-group{margin-bottom:18px;}
+.ing-group-title{
+  font-family:var(--sans);font-size:10px;font-weight:700;
+  letter-spacing:2px;color:var(--accent-dark);
+  text-transform:uppercase;margin-bottom:10px;
+}
+.ing-list{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.ing-item{
+  font-size:14px;color:var(--ink-soft);line-height:1.4;
+  padding:9px 12px;background:var(--paper-light);
+  border-radius:4px;border-left:2px solid var(--border);
+  transition:all .2s;
+}
+.ing-item:hover{
+  border-left-color:var(--accent);
+  background:#fff8e6;transform:translateX(2px);
+}
+@media (max-width:480px){.ing-list{grid-template-columns:1fr;}}
+
+/* Steps */
+.step{
+  display:flex;gap:16px;margin-bottom:16px;
+  padding-bottom:16px;border-bottom:1px dashed var(--border);
+  position:relative;
+}
+.step:last-child{border-bottom:none;}
+.step-num{
+  font-family:var(--serif);font-size:34px;font-weight:600;
+  color:var(--accent);line-height:.9;min-width:42px;
+  text-align:center;font-style:italic;
+  padding-top:2px;
+}
+.step-text{
+  font-family:var(--serif);font-size:16.5px;color:var(--ink-soft);
+  line-height:1.7;padding-top:6px;flex:1;
+}
+
+/* Spotify */
+.spotify-wrap{
+  margin:28px 0 8px;padding:20px;
+  background:linear-gradient(180deg,var(--paper-light),var(--paper));
+  border:1px solid var(--border);border-radius:8px;
+}
+.spotify-label{
+  font-family:var(--serif);font-style:italic;font-size:15px;
+  color:var(--ink-muted);margin-bottom:12px;
+  display:flex;align-items:center;gap:8px;
+}
+.spotify-label svg{color:var(--accent);width:16px;height:16px;}
+.spotify-wrap iframe{border-radius:6px;display:block;}
+
+/* Page footer */
+.page-footer{
+  text-align:center;margin-top:44px;padding-top:20px;
+  border-top:1px solid var(--border);
+  font-family:var(--serif);font-style:italic;
+  font-size:12px;color:var(--ink-muted);
+  display:flex;align-items:center;justify-content:center;gap:10px;
+}
+.page-footer .dot{width:3px;height:3px;background:var(--accent);border-radius:50%;opacity:.5;}
+
+/* Score explainer under number */
+.score-detail{
+  text-align:center;padding:20px;margin:20px 0;
+  background:var(--paper-light);border:1px solid var(--border);
+  border-radius:8px;
+  display:flex;align-items:center;justify-content:space-around;
+  gap:20px;flex-wrap:wrap;
+}
+.score-detail .big{
+  font-family:var(--serif);font-size:56px;font-weight:600;
+  line-height:1;color:var(--accent-dark);
+}
+.score-detail .stars-row{font-size:22px;color:var(--gold);letter-spacing:3px;}
+.score-detail .label{
+  font-family:var(--sans);font-size:10px;letter-spacing:2px;
+  color:var(--ink-muted);text-transform:uppercase;margin-top:4px;
+}
+</style>
 </head>
 <body>
-
-<div id="app" style="max-width:720px;margin:0 auto;padding:0 16px 40px;"></div>
+<div class="book">
+  <div class="page">
+    <div id="app"></div>
+  </div>
+</div>
 
 <script>
 const D={continents:[
-{id:'noord-midden-amerika',name:'Noord- en Midden-Amerika',emoji:'🌎',color:'#d97706',bg:'#1c1008',light:'#fde68a',dim:'#92400e',countries:[
+{id:'noord-midden-amerika',name:'Noord- en Midden-Amerika',emoji:'🌎',color:'#c86a2c',countries:[
 {flag:'🇲🇽',name:'Mexico',score:7.5,dish:"Burrito's, Taco's & Quesedilla's",about:"Mexico is een land van kleur, vuur en eeuwenoude tradities. De keuken is UNESCO-erfgoed en combineert Azteekse en Spaanse invloeden. Denk aan markten vol kruiden, chilipepers in alle soorten en maten, en maïs als basis van bijna alles.",persons:2,
 spotify:'2aEeghgUcnu75tzcolFMfs',spotifyLabel:'La Bamba — Ritchie Valens',
 ingredients:[{g:"Vulling"},["250 g kipfilet of rundergehakt","1 ui, gesnipperd"],["1 teen knoflook","½ blik tomaten (200 g)"],["½ tl komijn","½ tl paprikapoeder"],["½ tl chilipoeder","Zout en peper"],{g:"Taco's / Burritos / Quesedilla's"},["4-6 tortilla's (maïs of meel)","Geraspte kaas"],["Zure room","1 avocado (guacamole)"],["1 tomaat, gesneden","IJsbergsla"],["Jalapeños naar smaak",""]],
@@ -49,7 +613,7 @@ spotify:'7e89621JPkKaeDSTQ3avtg',spotifyLabel:'Sweet Home Alabama — Lynyrd Sky
 ingredients:[{g:"Smashburgers"},["300 g rundergehakt (min. 20% vet)","2 brioche hamburgerbroodjes"],["2 plakken cheddarkaas","Zout en versgemalen peper"],[" Boter of olie voor de pan",""],{g:"Toppings"},["Sla, tomaat, augurk","Ketchup, mosterd, mayonaise"],{g:"Friet"},["400 g vastkokende aardappelen","Olie om te frituren"],["Zout","Paprikapoeder"]],
 steps:["Friet: schil en snijd aardappelen in staven. Blancheer 5 min, dep droog.","Frituur op 160°C (±8 min), laat afkoelen. Frituur nogmaals op 180°C tot goudbruin en knapperig.","Vorm gehaktballen van ±150 g. Verhit een gietijzeren pan op hoog vuur.","Leg een bal in de pan, druk direct hard plat met een spatel — de 'smash'.","Bak 2-3 min, flip, leg kaas erop, bak 1 min. Rooster de broodjes met boter.","Bouw de burger op en serveer met friet."]}
 ]},
-{id:'zuid-amerika',name:'Zuid-Amerika',emoji:'🌎',color:'#059669',bg:'#04180f',light:'#a7f3d0',dim:'#065f46',countries:[
+{id:'zuid-amerika',name:'Zuid-Amerika',emoji:'🌎',color:'#3d8b5d',countries:[
 {flag:'🇦🇷',name:'Argentinië',score:5.5,dish:'Kipfilet met Chimichurri, Friet & Salade',about:"Argentinië bij nacht — tango, wijn en de geur van vlees op de grill. De chimichurri is het groene goud van dit land: een kruidensaus die elk stuk vlees naar een hoger niveau tilt. Buenos Aires is een van de culinaire hoofdsteden van Zuid-Amerika.",persons:2,
 spotify:'5k0hvqbYiey0PNQqIA1OOZ',spotifyLabel:'Por Una Cabeza — Carlos Gardel',
 ingredients:[{g:"Kipfilet"},["2 kipfilets","Olijfolie, zout, peper, knoflookpoeder"],{g:"Chimichurri"},["½ bos verse peterselie, fijngehakt","2 teentjes knoflook, fijngehakt"],["½ tl oregano","½ tl chilivlokken"],["1,5 el rode wijnazijn","3 el olijfolie, zout en peper"],{g:"Salade & Friet"},["Gemengde sla, komkommer, tomaat","Dressing naar keuze"],["400 g aardappelen","Olie om te frituren"]],
@@ -59,7 +623,7 @@ spotify:'5U7MyRNbuZrWkyAI4bm3Ja',spotifyLabel:'Gracias a la Vida — Violeta Par
 ingredients:[{g:"Steak"},["2 ribeye of entrecôte steaks (±250 g p.p.)","Grof zeezout"],["Versgemalen zwarte peper","Olijfolie"],["Rozemarijn of tijm (optioneel)","Knoflook (optioneel)"]],
 steps:["Haal het vlees 30 minuten van tevoren uit de koelkast.","Bereid de barbecue voor op hoge directe hitte.","Bestrooi royaal met grof zout en peper, bestrijk licht met olijfolie.","Grill 3-4 minuten per kant voor medium-rare (kerntemp ±55°C).","Laat 5 minuten rusten onder aluminiumfolie. Serveer met salade of gegrilde groenten."]}
 ]},
-{id:'afrika',name:'Afrika',emoji:'🌍',color:'#dc2626',bg:'#1a0606',light:'#fca5a5',dim:'#991b1b',countries:[
+{id:'afrika',name:'Afrika',emoji:'🌍',color:'#c04024',countries:[
 {flag:'🇹🇳',name:'Tunesië',score:6.3,dish:'Shakshuka met Naanbrood',about:"Tunesië ligt aan de Middellandse Zee en ademt een mix van Arabische, Berberse en Franse invloeden. De keuken is pittig, aromatisch en vol harissa. Shakshuka — eieren gepocheerd in tomatensaus — is wereldwijd geliefd geraakt.",persons:2,
 spotify:'6sNVx9BBrsA2IzwYSDfLOM',spotifyLabel:'Sidi Mansour — Saber Rebai',
 ingredients:[{g:"Shakshuka"},["4 eieren","1 blik gepelde tomaten (400 g)"],["1 rode paprika, gesneden","1 ui, gesnipperd"],["2 teentjes knoflook","1-2 tl harissa"],["1 tl komijn","1 tl paprikapoeder"],["Verse koriander","Olijfolie, zout, peper"],{g:"Naanbrood"},["200 g bloem","½ tl droge gist"],["100 ml lauwwarm water","60 g yoghurt"],["½ tl zout","1 el olijfolie"]],
@@ -69,7 +633,7 @@ spotify:'2SyvM3QTBniPoJ82B93xYx',spotifyLabel:'Aïcha — Khaled',
 ingredients:[{g:"Kefta"},["250 g rundergehakt (of lam/rund)","½ ui geraspt"],["1 teen knoflook, geperst","½ tl komijn"],["½ tl paprikapoeder","¼ tl kaneel"],["¼ tl chilivlokken","Peterselie, zout, peper"],{g:"Tomatensaus & Broodje"},["½ blik gepelde tomaten","½ ui, gesnipperd"],["1 teen knoflook","½ tl komijn + paprikapoeder"],["Verse koriander","2 Marokkaanse broodjes"]],
 steps:["Meng alle kefta-ingrediënten. Rol balletjes ter grootte van een walnoot.","Bak de balletjes rondom bruin in olijfolie. Leg apart.","Bak ui en knoflook in dezelfde pan. Voeg tomaten en kruiden toe, laat 10 min inkoken.","Leg de balletjes terug in de saus, laat 10-15 minuten sudderen.","Serveer op een broodje met verse koriander."]}
 ]},
-{id:'azie',name:'Azië',emoji:'🌏',color:'#7c3aed',bg:'#110820',light:'#ddd6fe',dim:'#4c1d95',countries:[
+{id:'azie',name:'Azië',emoji:'🌏',color:'#7d4bb8',countries:[
 {flag:'🇮🇳',name:'India',score:8.5,dish:'Butter Chicken',about:"India is een subcontinent met evenveel smaken als mensen. De Punjabi keuken staat bekend om rijke, romige sauzen en tandoor-ovens. Butter chicken (murgh makhani) is een van de meest bestelde gerechten ter wereld.",persons:2,
 spotify:'4i3MgUew8ynhf49Qwr4IP4',spotifyLabel:'Jai Ho — A.R. Rahman',
 ingredients:[{g:"Marinade"},["300 g kipfilet in stukken","75 g volle yoghurt"],["1 tl garam masala","½ tl komijn + kurkuma + chilipoeder"],["1 teen knoflook, geperst","½ tl geraspte gember"],{g:"Saus"},["1 ui, gesnipperd","2 teentjes knoflook"],["½ blik gepelde tomaten","100 ml slagroom"],["30 g boter","1 tl garam masala + paprikapoeder"],["Verse koriander","Zout + suiker"]],
@@ -79,7 +643,7 @@ spotify:'19I9vLd5zH7qwk69FGEp7o',spotifyLabel:'',
 ingredients:[{g:"Deeg"},["200 g bloem","½ tl zout"],["1 el olie","±100 ml water"],["Ghee of olie om te bakken",""],{g:"Vulling"},["200 g rundergehakt of lamsgehakt","2 eieren"],["1 ui, fijngesnipperd","1 teen knoflook"],["1 tl komijn + kurkuma + koriander","¼ tl chilipoeder"],["Verse bieslook","Zout en peper"],{g:"Serveren"},["Currysaus","Zoetzure augurksaus"]],
 steps:["Deeg: meng bloem, zout, olie en water. Kneed soepel, laat 30 min rusten, bestrijk met olie, laat nog 30 min rusten.","Vulling: bak ui en knoflook, voeg gehakt en kruiden toe. Laat afkoelen, klop de eieren erdoor.","Rek een deegbol zo dun mogelijk uit op een ingevette ondergrond — zo dun als papier.","Leg de vulling in het midden, vouw alle kanten naar binnen tot een stevig vierkant pakketje.","Bak in ruim ghee op middelhoog vuur, ±3-4 min per kant, tot goudbruin en knapperig.","Serveer met currysaus of zoetzure saus."]}
 ]},
-{id:'europa',name:'Europa',emoji:'🌍',color:'#2563eb',bg:'#08112a',light:'#bfdbfe',dim:'#1e3a8a',countries:[
+{id:'europa',name:'Europa',emoji:'🌍',color:'#2c6eb8',countries:[
 {flag:'🇮🇹',name:'Italië',score:8.0,dish:'Bruschetta & Risotto',about:"Italië is het land waar eten een religie is. Van de rijstvelden in de Po-vlakte tot de Toscaanse heuvels vol olijfbomen. Bruschetta bewijst dat de eenvoudigste ingrediënten, perfect uitgevoerd, het allerlekkerst zijn.",persons:2,
 spotify:'6RI0jfAVCxHF78a6XbsT9l',spotifyLabel:'Volare — Domenico Modugno',
 ingredients:[{g:"Bruschetta"},["½ ciabatta of stokbrood","2 rijpe tomaten, fijngesneden"],["1 teen knoflook","Handvol verse basilicum"],["Olijfolie, zout, peper","Beetje balsamico"],{g:"Risotto"},["160 g Arborio risottorijst","1 ui, fijngesnipperd"],["1 teen knoflook","100 ml droge witte wijn"],["600 ml warme bouillon","30 g geraspte Parmezaan"],["30 g boter","Zout, peper"]],
@@ -89,13 +653,13 @@ spotify:'0bhnFakmRioZbuQcmhVwoH',spotifyLabel:'The Spark — Kabin Crew, Lisdoon
 ingredients:[{g:"Vlees"},["300 g runderstoofvlees, in grove stukken","2 el bloem"],["1 el olijfolie","Zout en peper"],{g:"Groenten"},["1 ui, gesneden","1 teen knoflook, geperst"],["1 grote wortel, in stukken","1 pastinaak, in stukken"],["100 g champignons",""],{g:"Saus & Kruiden"},["165 ml Guinness (½ blikje)","200 ml runderbouillon"],["1 el tomatenpuree","1 el Worcestershiresaus"],["1 laurierblad","1 takje rozemarijn"],["1 takje tijm","½ tl porcinipoeder (optioneel)"]],
 steps:["Verwarm de oven voor op 150°C.","Wentel de stukken rundvlees door de bloem. Verhit olijfolie in een braadpan en bak het vlees in porties rondom bruin. Leg apart.","Fruit de ui glazig in dezelfde pan, schraap de aanbaksels los. Voeg knoflook toe en bak 1 minuut mee.","Leg het vlees terug in de pan. Voeg wortel, pastinaak, Guinness, bouillon, tomatenpuree, laurier, rozemarijn, tijm en porcinipoeder toe. Breng aan de kook.","Dek af en zet de pan 3 uur in de oven.","Voeg de champignons toe en zet nog 30 minuten in de oven.","Breng op smaak met Worcestershiresaus, zout en peper. Serveer met aardappelpuree of vers Iers sodabrood."]}
 ]},
-{id:'antarctica',name:'Antarctica',emoji:'🧊',color:'#0891b2',bg:'#030f1a',light:'#a5f3fc',dim:'#164e63',countries:[
+{id:'antarctica',name:'Antarctica',emoji:'🧊',color:'#3a8aa8',countries:[
 {flag:'❄️',name:'Antarctica',score:8.0,dish:'Zwaardvis met Groentjes & Steppengras Friet',about:"Het koudste, droogste en winderigste continent op aarde. Onderzoeksstations doen wat ze kunnen met wat ze hebben: vis uit de ijskoude zuidelijke oceaan en creatieve bijgerechten. Zwaardvis is stevig, vleezig en perfect voor krachtige bereidingen.",persons:2,
 spotify:'0o3mVY1wt9Vaa74VkzdSK2',spotifyLabel:'Theme From Antarctica — Vangelis',
 ingredients:[{g:"Zwaardvis"},["2 zwaardvissteaks (±180 g p.p.)","Olijfolie + citroen + knoflook"],["Verse tijm of rozemarijn","Zout en peper"],{g:"Groentjes"},["½ broccoli","Stukjes courgette + ½ paprika"],["Olijfolie, zout","Knoflookpoeder"],{g:"Steppengras Friet"},["300 g zoete aardappel of pastinaak","Olijfolie"],["Komijn","Paprikapoeder"]],
 steps:["Groentjes: snijd in stukken, bestrooi met olie en kruiden. Rooster op 200°C, ±25 min.","Friet: snijd zoete aardappel in staven, bestrooi met olie en kruiden. Rooster op 220°C, ±20-25 min, halverwege omdraaien.","Marineer de zwaardvis 15 min in olijfolie, citroensap, knoflook en kruiden.","Grill of bak op hoge hitte, ±3-4 min per kant. Mag van binnen nog licht roze zijn.","Serveer met groentjes en friet, bedruppeld met extra citroensap."]}
 ]},
-{id:'oceanie',name:'Oceanië',emoji:'🌏',color:'#16a34a',bg:'#041509',light:'#bbf7d0',dim:'#14532d',countries:[
+{id:'oceanie',name:'Oceanië',emoji:'🌏',color:'#2f9a5a',countries:[
 {flag:'🇦🇺',name:'Australië',score:9.2,dish:'Kangoeroe Steak & Staart, Broccoli & Aardappelen',about:"Australië is het land van de outback, de didgeridoo en de kangoeroe. De Aboriginals jaagden er al duizenden jaren op — het vlees is mager, smaakvol en rijk aan ijzer. Een echte Australische barbecue-ervaring op zijn best.",persons:2,
 spotify:'5c7fPE77YRElAsUUXNvpGr',spotifyLabel:'Down Under — Men At Work',
 ingredients:[{g:"Kangoeroe"},["2 kangoeroe steaks (bij gespec. slager of online)","1 stuk kangoeroe staart (optioneel)"],["Olijfolie, zout, peper","1 teen knoflook"],["Tijm, rozemarijn","1 el Worcestershiresaus"],{g:"Bijgerechten"},["½ broccoli, in roosjes","400 g aardappelen, in partjes"],["Boter","Knoflook, zout"]],
@@ -103,50 +667,158 @@ steps:["Staart (indien gebruikt): bak rondom aan, voeg bouillon en kruiden toe. 
 ]}
 ]};
 
-function stars(score){
-  const full=Math.floor(score/2);
-  const half=(score*10)%20>=5?1:0;
-  const empty=5-full-half;
-  const starSVG=(fill)=>`<svg viewBox="0 0 24 24" fill="${fill}" xmlns="http://www.w3.org/2000/svg" style="width:1em;height:1em;display:inline-block;vertical-align:-0.15em"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" stroke="none"/></svg>`;
-  const halfSVG=`<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:1em;height:1em;display:inline-block;vertical-align:-0.15em"><defs><linearGradient id="hg"><stop offset="50%" stop-color="currentColor"/><stop offset="50%" stop-color="transparent"/></linearGradient></defs><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="url(#hg)" stroke="currentColor" stroke-width="1.5"/></svg>`;
-  const emptySVG=`<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:1em;height:1em;display:inline-block;vertical-align:-0.15em"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>`;
-  return starSVG('currentColor').repeat(full)+(half?halfSVG:'')+emptySVG.repeat(empty);
-}
+// Country metadata for location cards (map + coords + capital)
+const META={
+  'Mexico':{iso:'mx',lat:'23.6°N',lng:'102.5°W',capital:'Mexico-Stad',region:'Noord-Amerika'},
+  'Verenigde Staten':{iso:'us',lat:'37.1°N',lng:'95.7°W',capital:'Washington D.C.',region:'Noord-Amerika'},
+  'Argentinië':{iso:'ar',lat:'38.4°S',lng:'63.6°W',capital:'Buenos Aires',region:'Zuid-Amerika'},
+  'Chili':{iso:'cl',lat:'35.7°S',lng:'71.5°W',capital:'Santiago',region:'Zuid-Amerika'},
+  'Tunesië':{iso:'tn',lat:'33.9°N',lng:'9.5°E',capital:'Tunis',region:'Noord-Afrika'},
+  'Marokko':{iso:'ma',lat:'31.8°N',lng:'7.1°W',capital:'Rabat',region:'Noord-Afrika'},
+  'India':{iso:'in',lat:'20.6°N',lng:'78.9°E',capital:'New Delhi',region:'Zuid-Azië'},
+  'Singapore':{iso:'sg',lat:'1.4°N',lng:'103.8°E',capital:'Singapore',region:'Zuidoost-Azië'},
+  'Italië':{iso:'it',lat:'41.9°N',lng:'12.6°E',capital:'Rome',region:'Zuid-Europa'},
+  'Ierland':{iso:'ie',lat:'53.4°N',lng:'8.2°W',capital:'Dublin',region:'West-Europa'},
+  'Antarctica':{iso:null,lat:'82.9°S',lng:'135.0°E',capital:'—',region:'Zuidpool'},
+  'Australië':{iso:'au',lat:'25.3°S',lng:'133.8°E',capital:'Canberra',region:'Oceanië'}
+};
 
-function scoreBadgeStyle(s){
-  if(s>=9)return'background:#052e16;color:#4ade80';
-  if(s>=8)return'background:#052e16;color:#86efac';
-  if(s>=7)return'background:#1c1a07;color:#fde047';
-  return'background:#1c0707;color:#f87171';
-}
-
-function backBtn(onclick, label){
-  return`<button onclick="${onclick}" class="back-btn" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#94a3b8;background:none;border:none;cursor:pointer;padding:0;font-family:'Poppins',sans-serif;margin-bottom:20px;font-weight:500;">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
-    ${label}
-  </button>`;
-}
-
+/* ---------- Helpers ---------- */
 function allCountries(){
   return D.continents.flatMap(c=>c.countries.map(co=>({...co,continent:c})));
 }
+function topN(n){
+  return allCountries().sort((a,b)=>b.score-a.score).slice(0,n);
+}
+function scoreClass(s){
+  if(s>=8)return'score-high';
+  if(s>=7)return'score-mid';
+  return'score-low';
+}
+function stars(score){
+  const s=score/2;
+  const full=Math.floor(s);
+  const half=(s-full)>=0.5?1:0;
+  const empty=5-full-half;
+  return'★'.repeat(full)+(half?'½':'')+'☆'.repeat(empty);
+}
+function mapFrame(name){
+  const m=META[name];
+  if(!m||!m.iso){
+    return`<div class="map-frame"><span class="map-fallback">${name==='Antarctica'?'❄':'📍'}</span></div>`;
+  }
+  return`<div class="map-frame">
+    <img src="https://cdn.jsdelivr.net/gh/djaiss/mapsicon@master/all/${m.iso}/vector.svg" alt="${name} kaart" onerror="this.parentNode.innerHTML='<span class=&quot;map-fallback&quot;>📍</span>'">
+  </div>`;
+}
+function backBtn(onclick,label){
+  return`<button class="back-btn" onclick="${onclick}">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+    ${label}
+  </button>`;
+}
+function ornament(){
+  return`<div class="ornament">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L14 10 L22 12 L14 14 L12 22 L10 14 L2 12 L10 10 Z"/></svg>
+  </div>`;
+}
+function scrollTop(){try{window.scrollTo({top:0,behavior:'smooth'});}catch(e){window.scrollTo(0,0);}}
 
-function renderSearch(){
-  return`<div style="position:relative;margin-bottom:24px;">
-    <svg style="position:absolute;left:14px;top:50%;transform:translateY(-50%);pointer-events:none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4a5568" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    <input id="search" class="search-input" type="text" placeholder="Zoek op continent, land of gerecht…"
-      oninput="handleSearch(this.value)"
-      style="width:100%;background:#13131f;border:1px solid #2a2a44;border-radius:10px;padding:12px 14px 12px 40px;font-size:14px;color:#e2e8f0;outline:none;font-family:'Poppins',sans-serif;">
-  </div>
-  <div id="search-results"></div>`;
+/* ---------- Page turn ---------- */
+function nav(fn){
+  const app=document.getElementById('app');
+  const cur=app.querySelector('.page-inner');
+  const finish=()=>{
+    app.innerHTML=fn();
+    scrollTop();
+    const inner=app.querySelector('.page-inner');
+    if(inner)inner.classList.add('turning-in');
+    applyStagger();
+  };
+  if(!cur){finish();return;}
+  cur.classList.add('turning-out');
+  cur.addEventListener('animationend',finish,{once:true});
+}
+function applyStagger(){
+  document.querySelectorAll('.stagger').forEach(box=>{
+    Array.from(box.children).forEach((el,i)=>{
+      el.style.animationDelay=(i*60)+'ms';
+    });
+  });
+}
+
+/* ---------- Views ---------- */
+function renderCover(){
+  const totalCountries=D.continents.reduce((a,c)=>a+c.countries.length,0);
+  const top=topN(3);
+  return`<div class="page-inner">
+    <div class="cover-eyebrow">Editie MMXXVI</div>
+    <div class="cover-crest">🍽️</div>
+    <h1 class="cover-title">Keuken<br><span class="amp">&amp;</span> Kampioen</h1>
+    <p class="cover-sub">Een culinaire reis langs alle continenten</p>
+    ${ornament()}
+    <div class="stats-row">
+      <div class="stat"><span class="stat-num">${totalCountries}</span><div class="stat-label">Landen</div></div>
+      <div class="stat"><span class="stat-num">${D.continents.length}</span><div class="stat-label">Continenten</div></div>
+      <div class="stat"><span class="stat-num">2</span><div class="stat-label">Personen</div></div>
+    </div>
+
+    <div class="top-scores">
+      <div class="top-scores-header">
+        <span class="laurel">❦</span>
+        <h3>De Kampioenen</h3>
+        <span class="laurel">❦</span>
+      </div>
+      <div class="podium stagger">
+        ${top.map((co,i)=>`
+          <div class="podium-item" onclick="showRecipe('${co.continent.id}','${co.name.replace(/'/g,"\\'")}')" style="--continent-color:${co.continent.color}">
+            <span class="podium-rank rank-${i+1}">${i+1}${i===0?'ˢᵗ':i===1?'ⁿᵈ':'ʳᵈ'}</span>
+            <span class="podium-flag">${co.flag}</span>
+            <div class="podium-info">
+              <div class="podium-name">${co.name}</div>
+              <div class="podium-dish">${co.dish}</div>
+            </div>
+            <span class="podium-score">${co.score}</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+
+    <div class="search-wrap">
+      <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="search" class="search-input" type="text" placeholder="Zoek een land, continent of gerecht…" oninput="handleSearch(this.value)">
+    </div>
+    <div id="search-results"></div>
+
+    <div id="toc-section">
+      <h3 class="toc-title">Inhoudsopgave</h3>
+      <div class="continents stagger">
+        ${D.continents.map(c=>`
+          <div class="continent-card" onclick="showCont('${c.id}')" style="--continent-color:${c.color}">
+            <span class="continent-emoji">${c.emoji}</span>
+            <div class="continent-info">
+              <div class="continent-name">${c.name}</div>
+              <div class="continent-meta">${c.countries.length} ${c.countries.length===1?'land':'landen'} · Hoofdstuk ${D.continents.indexOf(c)+1}</div>
+              <div class="continent-preview">${c.countries.map(co=>`<span>${co.flag}</span>`).join('')}</div>
+            </div>
+            <svg class="continent-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+
+    <div class="page-footer"><span>Keuken Kampioen</span><span class="dot"></span><span>Cover</span></div>
+  </div>`;
 }
 
 function handleSearch(q){
   const results=document.getElementById('search-results');
   const toc=document.getElementById('toc-section');
+  const top=document.querySelector('.top-scores');
   if(!q.trim()){
     results.innerHTML='';
     if(toc)toc.style.display='';
+    if(top)top.style.display='';
     return;
   }
   const lower=q.toLowerCase();
@@ -156,142 +828,144 @@ function handleSearch(q){
     co.continent.name.toLowerCase().includes(lower)
   );
   if(toc)toc.style.display='none';
+  if(top)top.style.display='none';
   if(!matches.length){
-    results.innerHTML=`<p style="font-size:13px;color:#4a5568;text-align:center;padding:32px 0;">Geen resultaten voor "${q}"</p>`;
+    results.innerHTML=`<p class="search-empty">Geen resultaten voor "${q}"</p>`;
     return;
   }
-  results.innerHTML=matches.map(co=>`
-    <div class="country-row" onclick="showRecipe('${co.continent.id}','${co.name}')" style="background:#1e1e32;border:0.5px solid #2a2a44;border-radius:12px;padding:14px 18px;cursor:pointer;display:flex;align-items:center;gap:14px;margin-bottom:8px;">
-      <span style="font-size:28px;line-height:1;flex-shrink:0;">${co.flag}</span>
-      <div style="flex:1;min-width:0;">
-        <div style="font-size:14px;font-weight:600;color:#e2e8f0;">${co.name}</div>
-        <div style="font-size:11px;color:${co.continent.color};font-weight:500;margin-top:1px;">${co.continent.emoji} ${co.continent.name}</div>
-        <div style="font-size:12px;color:#94a3b8;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${co.dish}</div>
-      </div>
-      <span style="font-size:13px;font-weight:700;padding:4px 12px;border-radius:20px;flex-shrink:0;${scoreBadgeStyle(co.score)}">${co.score}</span>
-    </div>`).join('');
-}
-
-function renderCover(){
-  const allC=D.continents.reduce((a,c)=>a+c.countries.length,0);
-  return`<div class="cover-inner" style="background:#0f0f1a;border-radius:16px;padding:56px 32px 48px;text-align:center;margin-bottom:0;position:relative;overflow:hidden;">
-  <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;" viewBox="0 0 720 340" preserveAspectRatio="xMidYMid slice">
-    ${[...Array(70)].map((_,i)=>{const x=(Math.sin(i*1.9+1)*360+360).toFixed(0);const y=(Math.cos(i*1.3+0.5)*160+170).toFixed(0);const r=i%7===0?1.8:i%3===0?1.2:0.7;const op=(0.15+Math.abs(Math.sin(i*0.8))*0.4).toFixed(2);return`<circle cx="${x}" cy="${y}" r="${r}" fill="#e2e8f0" opacity="${op}"/>`}).join('')}
-  </svg>
-  <div style="position:relative;z-index:1;">
-    <div style="width:72px;height:72px;border-radius:50%;border:1.5px solid #d97706;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;">
-      <div style="width:48px;height:48px;border-radius:50%;border:1px solid #d9770688;display:flex;align-items:center;justify-content:center;font-size:24px;">🍽️</div>
-    </div>
-    <h1 style="font-size:clamp(22px,5vw,32px);font-weight:700;color:#fef3c7;letter-spacing:3px;margin:0 0 8px;">KEUKEN KAMPIOEN</h1>
-    <p style="font-size:13px;color:#92400e;letter-spacing:2px;margin:0 0 28px;font-weight:500;">EEN CULINAIRE REIS LANGS ALLE CONTINENTEN</p>
-    <div style="display:inline-flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-bottom:32px;">
-      ${[`${allC} landen`,`${D.continents.length} continenten`,'Voor 2 personen'].map(t=>`<span style="font-size:12px;color:#d97706;border:1px solid #d9770655;padding:5px 14px;border-radius:4px;letter-spacing:1px;">${t.toUpperCase()}</span>`).join('')}
-    </div>
-  </div>
-</div>
-<div style="padding:28px 0 8px;">
-  ${renderSearch()}
-  <div id="toc-section">
-    <p style="font-size:11px;font-weight:600;letter-spacing:2px;color:#94a3b8;margin:0 0 16px;">INHOUDSOPGAVE</p>
-    <div class="toc-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;">
-      ${D.continents.map(c=>`<div class="cont-card" onclick="showCont('${c.id}')" style="background:#1e1e32;border:0.5px solid #2a2a44;border-radius:12px;padding:16px 18px;cursor:pointer;border-left:3px solid ${c.color};">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-          <span style="font-size:18px;">${c.emoji}</span>
-          <span style="font-size:13px;font-weight:600;color:#e2e8f0;">${c.name}</span>
+  results.innerHTML=`<div class="search-results stagger">
+    ${matches.map(co=>`
+      <div class="result-row" onclick="showRecipe('${co.continent.id}','${co.name.replace(/'/g,"\\'")}')" style="--continent-color:${co.continent.color}">
+        <span class="result-flag">${co.flag}</span>
+        <div class="result-info">
+          <div class="result-name">${co.name}</div>
+          <div class="result-continent">${co.continent.emoji} ${co.continent.name}</div>
+          <div class="result-dish">${co.dish}</div>
         </div>
-        ${c.countries.map(co=>`<div style="display:flex;align-items:center;gap:6px;margin-top:6px;">
-          <span style="font-size:14px;">${co.flag}</span>
-          <span style="font-size:12px;color:#94a3b8;">${co.name}</span>
-          <span style="margin-left:auto;font-size:11px;font-weight:600;padding:2px 7px;border-radius:20px;${scoreBadgeStyle(co.score)}">${co.score}</span>
-        </div>`).join('')}
-      </div>`).join('')}
-    </div>
-  </div>
-</div>`;
+        <span class="score-badge ${scoreClass(co.score)}">${co.score}</span>
+      </div>
+    `).join('')}
+  </div>`;
+  applyStagger();
 }
 
 function renderCont(cid){
   const c=D.continents.find(x=>x.id===cid);
-  return`<div>
-  ${backBtn('showHome()','Keuken Kampioen')}
-  <div style="background:${c.bg};border-radius:16px;padding:28px 24px 22px;margin-bottom:20px;border-left:4px solid ${c.color};">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
-      <span style="font-size:28px;">${c.emoji}</span>
-      <div>
-        <h2 style="font-size:clamp(18px,4vw,24px);font-weight:700;color:${c.light};margin:0 0 3px;">${c.name}</h2>
-        <p style="font-size:12px;color:${c.dim};margin:0;letter-spacing:1px;font-weight:500;">${c.countries.length} ${c.countries.length===1?'LAND':'LANDEN'} BEZOCHT</p>
-      </div>
+  const chapterNum=D.continents.indexOf(c)+1;
+  const rn=n=>['I','II','III','IV','V','VI','VII','VIII','IX','X'][n-1]||n;
+  return`<div class="page-inner" style="--continent-color:${c.color}">
+    ${backBtn("showHome()",'Terug naar cover')}
+    <div class="chapter-header">
+      <span class="chapter-emoji">${c.emoji}</span>
+      <div class="chapter-num">Hoofdstuk ${rn(chapterNum)}</div>
+      <h2 class="chapter-title">${c.name}</h2>
+      <div class="chapter-sub">${c.countries.length} ${c.countries.length===1?'gerecht':'gerechten'} van dit continent</div>
+      <div class="chapter-underline"></div>
     </div>
-  </div>
-  <div style="display:flex;flex-direction:column;gap:10px;">
-    ${c.countries.map(co=>`<div class="country-row" onclick="showRecipe('${cid}','${co.name}')" style="background:#1e1e32;border:0.5px solid #2a2a44;border-radius:12px;padding:16px 20px;cursor:pointer;display:flex;align-items:center;gap:14px;">
-      <span style="font-size:32px;line-height:1;flex-shrink:0;">${co.flag}</span>
-      <div style="flex:1;min-width:0;">
-        <div style="font-size:15px;font-weight:600;color:#e2e8f0;">${co.name}</div>
-        <div style="font-size:12px;color:#94a3b8;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${co.dish}</div>
-      </div>
-      <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">
-        <span style="font-size:15px;font-weight:700;padding:5px 14px;border-radius:20px;${scoreBadgeStyle(co.score)}">${co.score}</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="color:#94a3b8"><polyline points="9 18 15 12 9 6"/></svg>
-      </div>
-    </div>`).join('')}
-  </div>
-</div>`;
+    <div class="country-list stagger">
+      ${c.countries.map(co=>`
+        <div class="country-row" onclick="showRecipe('${cid}','${co.name.replace(/'/g,"\\'")}')">
+          <span class="country-flag">${co.flag}</span>
+          <div class="country-info">
+            <div class="country-name">${co.name}</div>
+            <div class="country-dish">${co.dish}</div>
+          </div>
+          <span class="score-badge ${scoreClass(co.score)}">${co.score}</span>
+          <svg class="country-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      `).join('')}
+    </div>
+    <div class="page-footer"><span>Hoofdstuk ${rn(chapterNum)}</span><span class="dot"></span><span>${c.name}</span></div>
+  </div>`;
 }
 
 function renderRecipe(cid,cname){
   const c=D.continents.find(x=>x.id===cid);
   const co=c.countries.find(x=>x.name===cname);
+  const meta=META[co.name]||{lat:'—',lng:'—',capital:'—',region:c.name};
+
   let ingHTML='';
+  let currentGroup=null;
+  let groupItems=[];
+  const flushGroup=()=>{
+    if(currentGroup!==null){
+      ingHTML+=`<div class="ing-group">
+        <div class="ing-group-title">${currentGroup}</div>
+        <div class="ing-list">${groupItems.join('')}</div>
+      </div>`;
+    }
+    groupItems=[];
+  };
   co.ingredients.forEach(row=>{
-    if(row.g){ingHTML+=`<div style="grid-column:1/-1;font-size:11px;font-weight:600;letter-spacing:1.5px;color:${c.color};padding-top:8px;padding-bottom:4px;">${row.g.toUpperCase()}</div>`;return;}
-    row.forEach(item=>{if(item.trim())ingHTML+=`<div class="ing-chip" style="font-size:13px;color:#e2e8f0;background:#13131f;border-radius:8px;padding:8px 11px;">${item}</div>`;});
+    if(row.g){flushGroup();currentGroup=row.g;return;}
+    row.forEach(item=>{if(item.trim())groupItems.push(`<div class="ing-item">${item}</div>`);});
   });
-  const spotifyEmbed=co.spotify?`<div style="margin-bottom:20px;">
-    <p style="font-size:11px;font-weight:600;letter-spacing:1.5px;color:#94a3b8;margin:0 0 12px;padding-bottom:8px;border-bottom:0.5px solid #2a2a44;">SPOTIFY${co.spotifyLabel?` — ${co.spotifyLabel}`:''}</p>
-    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${co.spotify}?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  flushGroup();
+
+  const spotifyEmbed=co.spotify?`<div class="spotify-wrap">
+    <div class="spotify-label">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.72 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      ${co.spotifyLabel||'Beluister onder het koken'}
+    </div>
+    <iframe src="https://open.spotify.com/embed/track/${co.spotify}?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
   </div>`:'';
-  return`<div>
-  ${backBtn(`showCont('${cid}')`,c.name)}
-  <div style="background:${c.bg};border-radius:16px;padding:28px 24px;margin-bottom:20px;border-left:4px solid ${c.color};">
-    <span style="font-size:48px;display:block;margin-bottom:12px;line-height:1;">${co.flag}</span>
-    <p style="font-size:11px;letter-spacing:2px;color:${c.color};margin:0 0 6px;font-weight:600;">${c.name.toUpperCase()}</p>
-    <h2 style="font-size:clamp(16px,3.5vw,22px);font-weight:700;color:${c.light};margin:0 0 14px;line-height:1.3;">${co.name} — ${co.dish}</h2>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;">
-      <span style="font-size:12px;padding:4px 12px;border-radius:20px;border:1px solid ${c.color}44;color:${c.color};font-weight:500;">Voor ${co.persons} personen</span>
-      <span style="font-size:12px;padding:4px 12px;border-radius:20px;${scoreBadgeStyle(co.score)};font-weight:600;">${co.score} / 10</span>
+
+  return`<div class="page-inner" style="--continent-color:${c.color}">
+    ${backBtn(`showCont('${cid}')`,c.name)}
+
+    <div class="recipe-hero">
+      <span class="recipe-hero-flag">${co.flag}</span>
+      <div class="recipe-eyebrow">${c.name}</div>
+      <h2 class="recipe-country">${co.name}</h2>
+      <div class="recipe-dish">${co.dish}</div>
+      <div class="recipe-meta">
+        <div class="recipe-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>Voor ${co.persons} personen</div>
+        <div class="recipe-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2z"/></svg>${co.score} / 10</div>
+      </div>
     </div>
-  </div>
-  <div style="background:#13131f;border-radius:12px;padding:20px 24px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-    <div>
-      <p style="font-size:11px;letter-spacing:1.5px;color:#94a3b8;margin:0 0 6px;font-weight:600;">SCORE</p>
-      <div style="font-size:38px;font-weight:700;${scoreBadgeStyle(co.score).includes('4ade')?'color:#4ade80':scoreBadgeStyle(co.score).includes('86ef')?'color:#86efac':scoreBadgeStyle(co.score).includes('fde0')?'color:#fde047':'color:#f87171'};">${co.score}</div>
+
+    <div class="location-card">
+      ${mapFrame(co.name)}
+      <div class="location-info">
+        <span class="capital">${meta.capital}</span>
+        <span>${meta.region}</span>
+        <div class="coords">${meta.lat} · ${meta.lng}</div>
+      </div>
+      <div class="location-score">
+        <div class="num">${co.score}</div>
+        <div class="of">van tien</div>
+        <div class="location-stars">${stars(co.score)}</div>
+      </div>
     </div>
-    <div style="font-size:22px;${co.score>=8?'color:#86efac':co.score>=7?'color:#fde047':'color:#f87171'}">${stars(co.score)}</div>
-  </div>
-  <div style="background:#13131f;border-radius:0 12px 12px 0;padding:16px 20px;margin-bottom:20px;border-left:3px solid ${c.color}33;">
-    <p style="font-size:11px;font-weight:600;letter-spacing:1.5px;color:#94a3b8;margin:0 0 8px;">OVER DIT LAND</p>
-    <p style="font-size:14px;color:#94a3b8;line-height:1.75;margin:0;">${co.about}</p>
-  </div>
-  <div style="margin-bottom:20px;">
-    <p style="font-size:11px;font-weight:600;letter-spacing:1.5px;color:#94a3b8;margin:0 0 12px;padding-bottom:8px;border-bottom:0.5px solid #2a2a44;">INGREDIËNTEN</p>
-    <div class="recipe-ing-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:7px;">${ingHTML}</div>
-  </div>
-  <div style="margin-bottom:20px;">
-    <p style="font-size:11px;font-weight:600;letter-spacing:1.5px;color:#94a3b8;margin:0 0 12px;padding-bottom:8px;border-bottom:0.5px solid #2a2a44;">BEREIDING</p>
-    ${co.steps.map((s,i)=>`<div style="display:flex;gap:12px;margin-bottom:12px;align-items:flex-start;">
-      <div style="width:26px;height:26px;border-radius:50%;background:${c.bg};border:1.5px solid ${c.color};display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:${c.color};flex-shrink:0;margin-top:1px;">${i+1}</div>
-      <p style="font-size:14px;color:#e2e8f0;line-height:1.7;margin:0;padding-top:3px;">${s}</p>
-    </div>`).join('')}
-  </div>
-  ${spotifyEmbed}
-</div>`;
+
+    <div class="about-section">
+      <p>${co.about}</p>
+    </div>
+
+    <h3 class="section-title">Ingrediënten</h3>
+    <div class="stagger">${ingHTML}</div>
+
+    <h3 class="section-title">Bereiding</h3>
+    <div class="stagger">
+      ${co.steps.map((s,i)=>`
+        <div class="step">
+          <div class="step-num">${String(i+1).padStart(2,'0')}</div>
+          <div class="step-text">${s}</div>
+        </div>
+      `).join('')}
+    </div>
+
+    ${spotifyEmbed}
+
+    <div class="page-footer"><span>${co.name}</span><span class="dot"></span><span>${co.dish}</span></div>
+  </div>`;
 }
 
-function showHome(){document.getElementById('app').innerHTML=renderCover();}
-function showCont(id){document.getElementById('app').innerHTML=renderCont(id);scrollToTop();}
-function showRecipe(cid,n){document.getElementById('app').innerHTML=renderRecipe(cid,n);scrollToTop();}
-function scrollToTop(){try{window.scrollTo({top:0,behavior:'smooth'});}catch(e){}}
+/* ---------- Router ---------- */
+function showHome(){nav(renderCover);}
+function showCont(id){nav(()=>renderCont(id));}
+function showRecipe(cid,n){nav(()=>renderRecipe(cid,n));}
+
 showHome();
 </script>
 </body>
